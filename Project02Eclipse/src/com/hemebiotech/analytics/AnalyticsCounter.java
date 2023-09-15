@@ -12,28 +12,32 @@ public class AnalyticsCounter {
 
 	public static void main(String args[]) throws Exception {
 		// first get input
-		BufferedReader reader = new BufferedReader(new FileReader("symptoms.txt"));
+		BufferedReader reader = new BufferedReader(
+				new FileReader("C:\\Users\\sylak\\git\\Duplessis-Sylvain-debug-Java\\Project02Eclipse/symptoms.txt"));
 		String line = reader.readLine();
 
 		int i = 0;
-		int headCount = 0; // counts headaches
+
 		while (line != null) {
 			i++;
 			System.out.println("symptom from file: " + line);
 			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			} else if (line.equals("rush")) {
+				headacheCount++;
+				System.out.println("number of headaches: " + headacheCount);
+			} else if (line.equals("rash")) {
 				rashCount++;
+				System.out.println("number of rashs: " + rashCount);
 			} else if (line.contains("pupils")) {
 				pupilCount++;
+				System.out.println("number of pupils: " + pupilCount);
 			}
 
-			line = reader.readLine(); // get another symptom
+			line = reader.readLine();
 		}
 
 		// next generate output
-		FileWriter writer = new FileWriter("result.out");
+		FileWriter writer = new FileWriter(
+				"C:\\\\Users\\\\sylak\\\\git\\\\Duplessis-Sylvain-debug-Java\\\\Project02Eclipse/result.out");
 		writer.write("headache: " + headacheCount + "\n");
 		writer.write("rash: " + rashCount + "\n");
 		writer.write("dialated pupils: " + pupilCount + "\n");
