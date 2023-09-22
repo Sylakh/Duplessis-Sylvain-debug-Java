@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filepath;
+	private String filePath;
 
 	/**
 	 * 
@@ -20,16 +20,16 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 *                 one per line
 	 */
 	public ReadSymptomDataFromFile(String filepath) {
-		this.filepath = filepath;
+		this.filePath = filepath;
 	}
 
 	@Override
 	public List<String> getSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
 
-		if (filepath != null) {
+		if (filePath != null) {
 			try {
-				BufferedReader reader = new BufferedReader(new FileReader(filepath));
+				BufferedReader reader = new BufferedReader(new FileReader(filePath));
 				String line = reader.readLine();
 
 				while (line != null) {

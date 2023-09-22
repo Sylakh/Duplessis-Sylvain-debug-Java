@@ -6,11 +6,18 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * classe qui implemente l'interface ISymptonWriter doit ecrire le contenu d'une
- * MAP<String, Integer> dans un fichier result.out se poser la question de
- * l'ordre d'ecriture (ordre d'entree ou possibilité d'ecrire en fct de l'ordre
- * alphabetique? besoin du filepath, le fichier sera creer dans la fct main
- * gerer les exceptions avec un try catch getter and setter?
+ * An implementation of the interface ISymptomWriter
+ * 
+ * Create a file containing keys and values of a map, line by line
+ * 
+ * @author Sylvain
+ * @version 1.0
+ * 
+ * @param listSymptom Map<String, Integer> containing symptoms with their
+ *                    occurrences
+ * @param filePath    String with a full or partial path to file result.out
+ * 
+ *                    result.out has no duplicate
  */
 
 public class WriteSymptomDataToFile implements ISymptomWriter {
@@ -18,10 +25,14 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	private Map<String, Integer> listSymptom;
 	private String filePath;
 
+	// constructor
+
 	public WriteSymptomDataToFile(Map<String, Integer> listSymptom, String filePath) {
 		this.listSymptom = listSymptom;
 		this.filePath = filePath;
 	}
+
+	// getters and setters
 
 	public Map<String, Integer> getListSymptom() {
 		return listSymptom;
@@ -41,7 +52,8 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
-		if (symptoms != null) {
+
+		if (symptoms != null && filePath != null) {
 			FileWriter file;
 			BufferedWriter writeSymptoms = null;
 
