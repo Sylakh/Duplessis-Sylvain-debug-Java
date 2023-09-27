@@ -6,34 +6,47 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * Used to
+ * Used to declare all methods needed in order to manipulate lists and maps to
+ * create a file containing all "Key : value" of a map, line by line
+ * 
+ * @param object ReadSymptomDataFromFile
+ * @param object WriteSymptomDataToFile
  */
-
 public class AnalyticsCounter {
 
-	private ISymptomReader reader;
-	private ISymptomWriter writer;
+	private ReadSymptomDataFromFile reader;
+	private WriteSymptomDataToFile writer;
 
-	// constructor
-
-	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+	/**
+	 * class constructor
+	 * 
+	 * @param object ReadSymptomDataFromFile
+	 * @param object WriteSymptomDataToFile
+	 */
+	public AnalyticsCounter(ReadSymptomDataFromFile reader, WriteSymptomDataToFile writer) {
 		this.reader = reader;
 		this.writer = writer;
 	}
 
-	// getters and setters
-
+	/**
+	 * get the list from an object ReadSymptomDataFromFile, part of an object
+	 * AnalyticsCounter
+	 * 
+	 * @return the list from an object ReadSymptomDataFromFile, part of an object
+	 *         AnalyticsCounter
+	 */
 	public List<String> getSymptoms() {
 		return reader.getSymptoms();
 	}
 
 	/**
-	 * Used to create a map with symptoms as keys and occurrences has value
+	 * Used to create a map with symptoms as keys and occurrences as values from a
+	 * list of symptoms
 	 * 
 	 * @author sylvain
 	 * @version 1.0
 	 * 
-	 * @param symptoms list of all symptoms
+	 * @param list of all symptoms
 	 * @return HashMap<String, Integer> not ordered
 	 */
 
@@ -63,7 +76,6 @@ public class AnalyticsCounter {
 	 * @param symptoms HashMap<String, Integer>
 	 * @return TreeMap naturally ordered by keys
 	 */
-
 	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
 		Map<String, Integer> sortedSymptoms = new TreeMap<String, Integer>(symptoms);
 		return sortedSymptoms;
@@ -75,10 +87,9 @@ public class AnalyticsCounter {
 	 * @author sylvain
 	 * @version 1.0
 	 * 
-	 * @param symptoms map
+	 * @param map symptoms
 	 * @return void
 	 */
-
 	public void writeSymptoms(Map<String, Integer> symptoms) {
 		writer.writeSymptoms(symptoms);
 	}

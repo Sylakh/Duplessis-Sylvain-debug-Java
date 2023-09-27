@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * An implementation of the interface ISymptomWriter
- * 
+ * <p>
  * Create a file containing keys and values of a map, line by line
  * 
  * @author Sylvain
@@ -25,31 +25,60 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	private Map<String, Integer> listSymptom;
 	private String filePath;
 
-	// constructor
-
+	/**
+	 * class constructor
+	 * 
+	 * @param map    listSymptom
+	 * @param String filePath containing the filepath of the file result.out
+	 */
 	public WriteSymptomDataToFile(Map<String, Integer> listSymptom, String filePath) {
 		this.listSymptom = listSymptom;
 		this.filePath = filePath;
 	}
 
-	// getters and setters
-
+	/**
+	 * get the map of an object WriteSymptomDataToFile
+	 * 
+	 * @return the map of an object WriteSymptomDataToFile
+	 */
 	public Map<String, Integer> getListSymptom() {
 		return listSymptom;
 	}
 
+	/**
+	 * set a map in an object WriteSymptomDataToFile
+	 * 
+	 * @param map listSymptom
+	 */
 	public void setListSymptom(Map<String, Integer> listSymptom) {
 		this.listSymptom = listSymptom;
 	}
 
+	/**
+	 * get the filepath of an object WriteSymptomDataToFile
+	 * 
+	 * @return the filepath of an object WriteSymptomDataToFile
+	 */
 	public String getFilePath() {
 		return filePath;
 	}
 
+	/**
+	 * set the filepath in an object WriteSymptomDataToFile
+	 * 
+	 * @param String filePath
+	 */
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 
+	/**
+	 * Override of the methods declared in the interface ISymptomWriter. Create a
+	 * file containing all keys with their occurrences from the map symptoms, line
+	 * by line.
+	 * 
+	 * @param map symptoms
+	 */
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
 

@@ -8,16 +8,16 @@ import java.util.TreeMap;
 
 /**
  * Main class of the project Analytics Counter
- * 
+ * <p>
  * Extract symptoms from the file symptoms.txt and put them in a ArrayList
- * 
+ * <P>
  * Count occurrences and put them in aHashMap with symptoms as keys and
  * occurrences as value
- * 
+ * <p>
  * Ordered the Map
- * 
+ * <P>
  * Create the file result.out containing all data line by line
- * 
+ * <p>
  * Filepaths of files symptoms.txt and result.out have to be set
  * 
  * @author sylvain
@@ -25,7 +25,6 @@ import java.util.TreeMap;
  * 
  * 
  */
-
 public class Main {
 
 	public static void main(String[] args) {

@@ -12,12 +12,13 @@ import java.util.Map;
 public interface ISymptomWriter {
 
 	/**
-	 * Used to extract data from a map and write it in a file, line by line.
+	 * Used to extract data from a map and write it in a file, line by line with
+	 * their occurrences.
 	 * 
 	 * @param symptoms: map<String, Integer>
 	 * @return void but create a file containing each key and value of the map
 	 * @version 1.0
-	 * @author sylvain
+	 * @author Sylvain
 	 */
 
 	void writeSymptoms(Map<String, Integer> symptoms);
