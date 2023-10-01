@@ -13,11 +13,6 @@ import java.util.Map;
  * @author Sylvain
  * @version 1.0
  * 
- * @param listSymptom Map<String, Integer> containing symptoms with their
- *                    occurrences
- * @param filePath    String with a full or partial path to file result.out
- * 
- *                    result.out has no duplicate
  */
 
 public class WriteSymptomDataToFile implements ISymptomWriter {
@@ -28,8 +23,8 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	/**
 	 * class constructor
 	 * 
-	 * @param map    listSymptom
-	 * @param String filePath containing the filepath of the file result.out
+	 * @param listSymptom Map containing symptoms with their occurrences
+	 * @param filePath    containing the file path of the file result.out
 	 */
 	public WriteSymptomDataToFile(Map<String, Integer> listSymptom, String filePath) {
 		this.listSymptom = listSymptom;
@@ -37,39 +32,12 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	}
 
 	/**
-	 * get the map of an object WriteSymptomDataToFile
-	 * 
-	 * @return the map of an object WriteSymptomDataToFile
-	 */
-	public Map<String, Integer> getListSymptom() {
-		return listSymptom;
-	}
-
-	/**
 	 * set a map in an object WriteSymptomDataToFile
 	 * 
-	 * @param map listSymptom
+	 * @param listSymptom Map containing symptoms with their occurrences
 	 */
 	public void setListSymptom(Map<String, Integer> listSymptom) {
 		this.listSymptom = listSymptom;
-	}
-
-	/**
-	 * get the filepath of an object WriteSymptomDataToFile
-	 * 
-	 * @return the filepath of an object WriteSymptomDataToFile
-	 */
-	public String getFilePath() {
-		return filePath;
-	}
-
-	/**
-	 * set the filepath in an object WriteSymptomDataToFile
-	 * 
-	 * @param String filePath
-	 */
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
 	}
 
 	/**
@@ -77,18 +45,14 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 * file containing all keys with their occurrences from the map symptoms, line
 	 * by line.
 	 * 
-	 * @param map symptoms
+	 * @param symptoms Map containing symptoms with their occurrences
 	 */
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) {
 
 		if (symptoms != null && filePath != null) {
-			FileWriter file;
-			BufferedWriter writeSymptoms = null;
 
-			try {
-				file = new FileWriter(filePath, false);
-				writeSymptoms = new BufferedWriter(file);
+			try (BufferedWriter writeSymptoms = new BufferedWriter(new FileWriter(filePath))) {
 
 				for (Map.Entry<String, Integer> entry : listSymptom.entrySet()) {
 					String key = entry.getKey();
@@ -98,15 +62,6 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
 			} catch (IOException e) {
 				System.err.println("error while writing file " + e.getMessage() + "caused by" + e.getCause());
-			} finally {
-				try {
-					if (writeSymptoms != null) {
-						writeSymptoms.close();
-					}
-
-				} catch (IOException e) {
-					System.err.println("error while closing file " + e.getMessage() + "caused by" + e.getCause());
-				}
 			}
 
 		}

@@ -19,43 +19,37 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	/**
 	 * class constructor of ReadSymptomDataFromFile
 	 * 
-	 * @param String filepath a full or partial path to file with symptom strings in
-	 *               it, one per line
+	 * @param filePath a full or partial path to file with symptom strings in it,
+	 *                 one per line
 	 */
-	public ReadSymptomDataFromFile(String filepath) {
-		this.filePath = filepath;
+	public ReadSymptomDataFromFile(String filePath) {
+		this.filePath = filePath;
 	}
 
 	/**
 	 * Override of the methods declared in the interface ISymptomReader. Return a
-	 * brut list of all symptoms written in a file, one per line.
+	 * raw list of all symptoms which are written in a file, one per line.
 	 * 
-	 * @param String filepath a full or partial path to file with symptom strings in
-	 *               it
-	 * 
-	 * @return list of all symptoms, duplicates may exist. If no filepath, return an
+	 * @return list of all symptoms, duplicates may exist. If no filePath, return an
 	 *         empty list
 	 * 
 	 * @version 1.0
 	 * @author Sylvain
 	 */
-
 	@Override
 	public List<String> getSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
 
 		if (filePath != null) {
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(filePath));
+			try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 				String line = reader.readLine();
 
 				while (line != null) {
 					result.add(line);
 					line = reader.readLine();
 				}
-				reader.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.err.println("error while reading file " + e.getMessage() + "caused by" + e.getCause());
 			}
 		}
 

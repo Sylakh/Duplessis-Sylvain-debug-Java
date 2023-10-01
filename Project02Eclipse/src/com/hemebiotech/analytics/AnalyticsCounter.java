@@ -7,23 +7,22 @@ import java.util.TreeMap;
 
 /**
  * Used to declare all methods needed in order to manipulate lists and maps to
- * create a file containing all "Key : value" of a map, line by line
+ * create a file containing all "Key : value" of a map, line by line count all
+ * occurences of a key of the raw list of symptoms
  * 
- * @param object ReadSymptomDataFromFile
- * @param object WriteSymptomDataToFile
  */
 public class AnalyticsCounter {
 
-	private ReadSymptomDataFromFile reader;
-	private WriteSymptomDataToFile writer;
+	private ISymptomReader reader;
+	private ISymptomWriter writer;
 
 	/**
 	 * class constructor
 	 * 
-	 * @param object ReadSymptomDataFromFile
-	 * @param object WriteSymptomDataToFile
+	 * @param reader ISymptomReader
+	 * @param writer ISymptomWriter
 	 */
-	public AnalyticsCounter(ReadSymptomDataFromFile reader, WriteSymptomDataToFile writer) {
+	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
 		this.reader = reader;
 		this.writer = writer;
 	}
@@ -46,38 +45,38 @@ public class AnalyticsCounter {
 	 * @author sylvain
 	 * @version 1.0
 	 * 
-	 * @param list of all symptoms
-	 * @return HashMap<String, Integer> not ordered
+	 * @param symptoms list of all symptoms
+	 * @return HashMap not ordered containing all symptoms with their occurrences
 	 */
 
 	public Map<String, Integer> countSymptoms(List<String> symptoms) {
 
-		Map<String, Integer> mapSymptoms = new HashMap<String, Integer>();
+		Map<String, Integer> mapSymptoms = new HashMap<>();
 		int count;
 
-		for (int i = 0; i < symptoms.size(); i++) {
-			if (mapSymptoms.containsKey(symptoms.get(i))) {
+		for (String symptom : symptoms) { // Enhanced version
+			if (mapSymptoms.containsKey(symptom)) {
 
-				count = mapSymptoms.get(symptoms.get(i)) + 1;
-				mapSymptoms.put(symptoms.get(i), count);
+				count = mapSymptoms.get(symptom) + 1;
+				mapSymptoms.put(symptom, count);
 			} else {
-				mapSymptoms.put(symptoms.get(i), 1);
+				mapSymptoms.put(symptom, 1);
 			}
 		}
 		return mapSymptoms;
 	}
 
 	/**
-	 * Used to ordered a HashMap<String, Integer> by alphabetical order of the keys
+	 * Used to ordered a HashMap by alphabetical order (keys)
 	 * 
 	 * @author sylvain
 	 * @version 1.0
 	 * 
-	 * @param symptoms HashMap<String, Integer>
+	 * @param symptoms HashMap containing symptoms with their occurrences
 	 * @return TreeMap naturally ordered by keys
 	 */
 	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
-		Map<String, Integer> sortedSymptoms = new TreeMap<String, Integer>(symptoms);
+		Map<String, Integer> sortedSymptoms = new TreeMap<>(symptoms);
 		return sortedSymptoms;
 	}
 
@@ -87,8 +86,7 @@ public class AnalyticsCounter {
 	 * @author sylvain
 	 * @version 1.0
 	 * 
-	 * @param map symptoms
-	 * @return void
+	 * @param symptoms Map containing symptoms with their occurrences
 	 */
 	public void writeSymptoms(Map<String, Integer> symptoms) {
 		writer.writeSymptoms(symptoms);

@@ -1,10 +1,8 @@
 package com.hemebiotech.analytics;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Main class of the project Analytics Counter
@@ -16,36 +14,46 @@ import java.util.TreeMap;
  * <p>
  * Ordered the Map
  * <P>
- * Create the file result.out containing all data line by line
+ * Create the file result.out containing all data line by line.
  * <p>
- * Filepaths of files symptoms.txt and result.out have to be set
+ * File paths of files symptoms.txt and result.out have to be set
  * 
- * @author sylvain
- * @Version 1.0
+ * @author Sylvain
+ * @version 1.0
  * 
  * 
  */
 public class Main {
 
+	/**
+	 * file path of the file symptoms.txt
+	 */
+	final static String FILE_PATH_SYMPTOMS = ".\\Project02Eclipse\\symptoms.txt";
+	/**
+	 * file path of the file result.out
+	 */
+	final static String FILE_PATH_RESULT = ".\\Project02Eclipse\\result.out";
+
+	/**
+	 * main methods
+	 * 
+	 * @param args File paths of files symptoms.txt and result.out have to be set as
+	 *             constant
+	 */
 	public static void main(String[] args) {
-
-		// CONSTANTS
-
-		final String FILEPATHSYMPTOMS = ".\\Project02Eclipse\\symptoms.txt";
-		final String FILEPATHRESULT = ".\\Project02Eclipse\\result.out";
 
 		// VARIABLES
 
-		Map<String, Integer> mapSymptom = new HashMap<String, Integer>();
-		List<String> listSymptom = new ArrayList<String>();
-		Map<String, Integer> sortedMapSymptom = new TreeMap<String, Integer>();
+		Map<String, Integer> mapSymptom = new HashMap<>();
+		List<String> listSymptom;
+		Map<String, Integer> sortedMapSymptom;
 
-		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile(FILEPATHSYMPTOMS);
-		WriteSymptomDataToFile writer = new WriteSymptomDataToFile(mapSymptom, FILEPATHRESULT);
+		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile(FILE_PATH_SYMPTOMS);
+		WriteSymptomDataToFile writer = new WriteSymptomDataToFile(mapSymptom, FILE_PATH_RESULT);
 
 		AnalyticsCounter count = new AnalyticsCounter(reader, writer);
 
-		// methods needed
+		// main
 
 		listSymptom = count.getSymptoms();
 
